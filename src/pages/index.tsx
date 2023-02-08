@@ -54,12 +54,12 @@ export default function Home() {
 
     return (
         <main className={styles.main}>
-            <h1>Replace</h1>
+            <h1>Multiple Replace Online</h1>
             <br />
             <form onSubmit={(e) => e.preventDefault()}>
-                <h3>구분자</h3>
+                <h3>Separator</h3>
                 <div className={styles.divide}>
-                    <label>구분자: </label>
+                    <label>Separator: </label>
                     <input
                         name='split'
                         type='text'
@@ -67,36 +67,38 @@ export default function Home() {
                         onChange={handleSplitChange}
                     />
                 </div>
-                <h3>규칙</h3>
+                <h3>Rule</h3>
                 <div className={styles.divide}>
-                    <label htmlFor='file'>규칙</label>
+                    <label htmlFor='file'>Rule File: </label>
                     <input
                         name='rule'
                         type='file'
+                        accept='.txt'
                         onChange={handleRuleChange}
                     />
                     <div>
-                        규칙파일 예시
+                        Rule Example
                         <p>A{split}A`</p>
                         <p>B{split}B`</p>
                     </div>
                 </div>
-                <h3>파일</h3>
+                <h3>Target File</h3>
                 <div className={styles.divide}>
-                    <label htmlFor='file'>파일</label>
+                    <label htmlFor='file'>Target File: </label>
                     <input
                         name='file'
                         type='file'
+                        accept='.txt'
                         onChange={handleFileChange}
                     />
                 </div>
                 {result && (
                     <>
-                        <h3>결과</h3>
+                        <h3>Download Result</h3>
                         <div className={styles.divide}>
                             <input
                                 type='button'
-                                value='다운로드'
+                                value='Download'
                                 onClick={downloadTxtFile}
                             />
                         </div>

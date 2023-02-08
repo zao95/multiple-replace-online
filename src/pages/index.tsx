@@ -111,6 +111,7 @@ export default function Home() {
                                     type='button'
                                     value='Download'
                                     onClick={downloadTxtFile}
+                                    className={styles.download}
                                 />
                             </div>
                         </>

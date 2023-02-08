@@ -1,6 +1,8 @@
 import styles from '@/styles/Home.module.css'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 export default function Home() {
     const [split, setSplit] = useState<string>('->')
@@ -21,6 +23,7 @@ export default function Home() {
             _file = _file.replaceAll(from, to)
         })
         setResult(_file)
+        toast.success('Replace successfully')
     }, [file, rule, split])
     const handleSplitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSplit(e.target.value)
@@ -30,6 +33,7 @@ export default function Home() {
         reader.onload = async (e: any) => {
             const text = e.target.result
             setRule(text)
+            toast.success('Rule loaded successfully')
         }
         reader.readAsText(e.target.files[0])
     }
@@ -38,6 +42,7 @@ export default function Home() {
         reader.onload = async (e: any) => {
             const text = e.target.result
             setFile(text)
+            toast.success('File loaded successfully')
         }
         reader.readAsText(e.target.files[0])
         setFileName(e.target.files[0].name)
@@ -115,6 +120,12 @@ export default function Home() {
                         <>
                             <h3>rule</h3>
                             <div className={styles.divide}>
+                                <CopyToClipboard
+                                    text={rule}
+                                    onCopy={() => toast.success('Copy Success')}
+                                >
+                                    <button>Copy to clipboard</button>
+                                </CopyToClipboard>
                                 <pre>{rule}</pre>
                             </div>
                         </>
@@ -123,6 +134,12 @@ export default function Home() {
                         <>
                             <h3>file</h3>
                             <div className={styles.divide}>
+                                <CopyToClipboard
+                                    text={file}
+                                    onCopy={() => toast.success('Copy Success')}
+                                >
+                                    <button>Copy to clipboard</button>
+                                </CopyToClipboard>
                                 <pre>{file}</pre>
                             </div>
                         </>
@@ -131,6 +148,12 @@ export default function Home() {
                         <>
                             <h3>result</h3>
                             <div className={styles.divide}>
+                                <CopyToClipboard
+                                    text={result}
+                                    onCopy={() => toast.success('Copy Success')}
+                                >
+                                    <button>Copy to clipboard</button>
+                                </CopyToClipboard>
                                 <pre>{result}</pre>
                             </div>
                         </>
